@@ -4,7 +4,7 @@ from keras.layers.core import Dropout, Lambda
 from keras import Model
 import numpy as np
 import tensorflow as tf
-from DataPrep import DataGenerator
+from dataPrep import DataGenerator
 from keras.callbacks import EarlyStopping, ModelCheckpoint, ReduceLROnPlateau
 
 def mean_iou(y_true, y_pred):

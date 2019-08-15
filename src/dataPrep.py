@@ -8,7 +8,11 @@ import cv2
 
 
 def get_mask(img, mask_data):
-
+    '''
+    :param img: PIL.Image
+    :param mask_data: data from json file
+    :return: mask
+    '''
     x = mask_data.get('regions')[0].get('shape_attributes').get('all_points_x')
     y = mask_data.get('regions')[0].get('shape_attributes').get('all_points_y')
     mask_img = Image.fromarray(np.zeros(list(reversed(img.size)), dtype=np.uint8))
@@ -19,6 +23,16 @@ def get_mask(img, mask_data):
 
 
 def get_resized_data(path_out, imgs, masks_json, size):
+
+    '''
+    Function generates resized images and masks for further modeling
+
+    :param path_out: path to allocate resized images/masks
+    :param imgs: the list of images, full paths
+    :param masks_json: json file with masks coordinates
+    :param size: the final size of images
+    :return: None. Two additional directories in path_out
+    '''
 
     cmd = 'rm -rf {0}'.format(os.path.join(path_out, 'images_' + str(size)))
     print(cmd)
@@ -47,7 +61,9 @@ def get_resized_data(path_out, imgs, masks_json, size):
 
 
 class DataGenerator(keras.utils.Sequence):
-    'Generates data for Keras'
+    '''
+    Keras data generator
+    '''
 
     def __init__(self, imgs_path, masks_path,
                  augmentations=None, batch_size=16, img_size=512, n_channels=3, shuffle=True):
