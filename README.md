@@ -40,6 +40,7 @@ training process may take some time.
 		├── imageFunc.py
 		├── unet_simple.py
 
+* Input/Model folders are ignored due to sizes
 ## Deployment
 [ADD]
 
